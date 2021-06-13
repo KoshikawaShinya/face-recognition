@@ -12,8 +12,6 @@ cap = cv2.VideoCapture(0)
 model_1 = EfficientNet.from_pretrained('efficientnet-b3')
 model_2 = EaseClassificationModel(H, W)
 
-ctime = 0
-ptime = 0
 
 while True:
     success, img = cap.read()
