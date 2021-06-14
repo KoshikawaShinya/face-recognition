@@ -2,12 +2,13 @@ import cv2
 import dlib
 import matplotlib.pyplot as plt
 from PIL import ImageGrab
+import os
 
 cap = cv2.VideoCapture(0)
 wCam,hCam = 1280,800
 
 name = input("名前を入力してね:")
-path = "./face/test.txt"
+path = "../face/test.txt"
 i=0
 f1 = open(path)
 data = f1.readlines()
@@ -16,6 +17,7 @@ for datam in data:
     data[i] = datam.strip()
     num = int(data[0])
     i+=1
+print(int(num))
 
 while True:
     success, img = cap.read()
