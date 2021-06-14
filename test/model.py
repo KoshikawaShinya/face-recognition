@@ -14,7 +14,7 @@ class EaseClassificationModel(nn.Module):
         self.conv4 = nn.Conv2d(128, 128, 3, 1, 1)
         self.pool2 = nn.AvgPool2d(kernel_size=2, stride=2)
         self.flatten = nn.Flatten()
-        
+
         self.fc1 = nn.Linear(128 * (H//4) * (W//4), 64)
         self.fc2 = nn.Linear(64, 1)
 
