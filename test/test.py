@@ -24,7 +24,7 @@ while True:
     imgRGB = imgRGB.reshape(1, H, W, 3).transpose(0, 3, 1, 2)
     imgRGB = torch.tensor(imgRGB).float()
     output = model_2(imgRGB)
-    #print(output)
+    print(output)
 
     cv2.imshow("Image",img)
     key = cv2.waitKey(1)
