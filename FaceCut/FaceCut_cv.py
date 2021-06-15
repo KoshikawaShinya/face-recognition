@@ -18,7 +18,7 @@ face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 while True:
     success, img = cap.read()
     img = cv2.flip(img,1)
-    print(img.shape)
+    print('\rNo, %d' % cnt, end='')
 
     if success == False:
         cap.release()
