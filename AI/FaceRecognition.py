@@ -15,6 +15,7 @@ W = 64
 
 timeP=0
 timeC=0
+tmp=0
 
 i = 0
 path = './memo.txt'
@@ -42,21 +43,24 @@ while True:
         with torch.no_grad():
             imgRGB = torch.tensor(imgRGB).float()
             output = model_2(imgRGB)
-            out = np.argmax(output.numpy(), 1)
+            out = int(np.argmax(output.numpy(), 1))
 
             cv2.putText(img, str(out), (40, 70), cv2.FONT_HERSHEY_COMPLEX,
                         3, (255, 0, 255), 3)
             if(timeP == 0):
                 timeP = time.time()
             timeC = time.time()
-            if (timeC - timeP >= 3.0):
-                for i in out:
-                    if out == i:
-                        message = data[i][1]+'さんこんにちは'
-                        payload = {'message':message}
-                        r = requests.post(url, headers=headers, data=payload,)
+            if tmp != out:
                 timeP = 0
                 timeC = 0
+            elif timeC - timeP >= 3.0:
+                    message = data[out][1]+'さんこんにちは'
+                    payload = {'message':message}
+                    r = requests.post(url, headers=headers, data=payload,)
+                    timeP = 0
+                    timeC = 0
+                    print(data[out][1])
+            tmp = out
     else:
         timeP = 0
         timeC = 0
